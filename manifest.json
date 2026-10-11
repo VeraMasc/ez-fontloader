@@ -1,0 +1,10 @@
+{
+	"id": "ez-fontloader",
+	"name": "Ez Fontloader",
+	"version": "1.0.0",
+	"minAppVersion": "1.12.0",
+	"description": "????",
+	"author": "Vera Mascuñano",
+	"authorUrl": "https://github.com/VeraMasc",
+	"isDesktopOnly": false
+}
