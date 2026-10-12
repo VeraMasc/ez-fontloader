@@ -1,6 +1,6 @@
 import { Plugin } from 'obsidian';
 import { declareFontFaces, generateStyle } from './style generator';
-import { PluginSettings, DEFAULT_SETTINGS } from './PluginSettings';
+import { PluginSettings, DEFAULT_SETTINGS, SettingsTab } from './PluginSettings';
 import { FontData } from './FontData';
 
 
@@ -11,16 +11,12 @@ export default class EzFontloaderPlugin extends Plugin {
 		this.styleEl = generateStyle(this);
 		await this.loadSettings();
 		declareFontFaces(this.styleEl,this.settings.fonts, this)
-		// this.addSettingTab(new FontsourceSettingsTab(this.app, this));
+		this.addSettingTab(new SettingsTab(this.app, this));
 
-		// this.registerEvent(
-		// 	this.app.workspace.on('window-open', (_workspaceWindow, window) => {
-		// 		// void this.initializeFonts(window.document).catch((error: unknown) => {
-		// 		// 	console.error('Unable to load fonts in popout window:', error);
-		// 		// });
-		// 	}),
-		// );
+
 	}
+
+
 
 
 

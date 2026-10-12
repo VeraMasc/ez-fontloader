@@ -131,4 +131,5 @@ dist
 
 # build
 main.js
+main.js.map
 test-vault/

@@ -38,6 +38,14 @@ export class FontData {
     }`;
     }
 
+    /** Renders the font information in the settings tab */
+    renderSettings(containerEl:HTMLElement){
+        var group = containerEl.createEl('div', {cls:"setting-item"})
+        group.createEl('h6', {text:this.name})
+        group.createSpan({text:this.file})
+        return group;
+    }
+
     /** Generates the font data from an existing object */
     static fromObject(data: any) {
         return new FontData(data.name, data.file, data.weight, data.style);
