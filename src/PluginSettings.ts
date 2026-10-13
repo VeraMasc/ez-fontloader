@@ -1,4 +1,4 @@
-import { App, PluginSettingTab, Setting } from 'obsidian';
+import { App, normalizePath, PluginSettingTab, Setting } from 'obsidian';
 import { FontData } from './FontData';
 import EzFontloaderPlugin from './main';
 
@@ -6,6 +6,7 @@ export interface PluginSettings {
 	/**Relative path to the vault where fonts are stored */
 	fontPath: string;
 	fonts: FontData[];
+	
 }
 export const DEFAULT_SETTINGS: PluginSettings = {
 	fontPath: "/Fonts/",
@@ -37,7 +38,14 @@ export class SettingsTab extends PluginSettingTab {
 		list.createEl('div',{cls:"setting-item item-heading", text:"Active Fonts"})
 		var content = list.createEl('div',{cls:"setting-items"})
 		for(let font of plugin.settings.fonts){
-			font.renderSettings(content)
+			font.renderSettings(content, plugin)
 		}
 	}
 }
+
+/** Validates that the fonts exist */
+export async function validateFonts(plugin:EzFontloaderPlugin){
+	let {settings, app:{vault:{adapter}}} = plugin;
+	let fontFiles = await adapter.list(normalizePath(settings.fontPath));
+	console.log(fontFiles.files)
+}	

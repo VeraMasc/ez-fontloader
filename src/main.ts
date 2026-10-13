@@ -1,6 +1,6 @@
 import { Plugin } from 'obsidian';
 import { declareFontFaces, generateStyle } from './style generator';
-import { PluginSettings, DEFAULT_SETTINGS, SettingsTab } from './PluginSettings';
+import { PluginSettings, DEFAULT_SETTINGS, SettingsTab, validateFonts } from './PluginSettings';
 import { FontData } from './FontData';
 
 
@@ -13,7 +13,7 @@ export default class EzFontloaderPlugin extends Plugin {
 		declareFontFaces(this.styleEl,this.settings.fonts, this)
 		this.addSettingTab(new SettingsTab(this.app, this));
 
-
+		validateFonts(this);
 	}
 
 

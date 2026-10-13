@@ -12,8 +12,21 @@ export function generateStyle(plugin:Plugin) {
 
 /** Declares all the font faces inside an existing style element */
 export function declareFontFaces(style:HTMLStyleElement, fonts:FontData[], plugin:EzFontloaderPlugin){
-    let faces = fonts.map(f => f.getFontface(plugin)+"\n\n").join('')
-    style.innerHTML+=faces;
+    let faces = fonts.map(f => f.getFontfaceCss(plugin)+"\n\n").join('')
+    style.appendText(faces);
+}
+
+/** Declares all the font faces inside an existing style element */
+export function resetFontFaces(style:HTMLStyleElement, fonts:FontData[], plugin:EzFontloaderPlugin){
+    clearFontFaces(style)
+    declareFontFaces(style, fonts, plugin);
+}
+
+function clearFontFaces(style:HTMLStyleElement) {
+    while (style.firstChild) {
+        style.removeChild(style.firstChild);
+    }
+    style.appendText("\n/* EZ Fontloader style block */\n\n")
 }
 
 
